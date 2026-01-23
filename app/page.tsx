@@ -139,10 +139,10 @@ export default function Dashboard() {
 
       {/* Main Dashboard Content */}
       <div className="dashboard-container-elevated space-y-4 overflow-hidden">
-        <div className="dashboard-container-header px-5 py-4">
-          <h1 className="text-base font-semibold text-foreground">
+        <div className="px-5 pt-5">
+          <h3 className="text-sm font-semibold text-foreground">
             Market Structure and CapEX intelligence
-          </h1>
+          </h3>
           <p className="text-sm text-muted-foreground mt-0.5">
             Hyperscaler AI CapEx Commitments (FY 2025-2026)
           </p>
