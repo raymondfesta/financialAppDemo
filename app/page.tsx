@@ -2,6 +2,12 @@ import { TrendingUp, TrendingDown, Bot, Activity } from "lucide-react"
 import { AISpendChart } from "@/components/dashboard/ai-spend-chart"
 import { KeyInsightCard } from "@/components/dashboard/key-insight-card"
 import { CapexTable } from "@/components/dashboard/capex-table"
+import { PerformanceChart } from "@/components/dashboard/performance-chart"
+import { RiskMetrics } from "@/components/dashboard/risk-metrics"
+import { MarketIndices } from "@/components/dashboard/market-indices"
+import { SectorHeatmap } from "@/components/dashboard/sector-heatmap"
+import { StrategyHoldings } from "@/components/dashboard/strategy-holdings"
+import { FactorAttribution } from "@/components/dashboard/factor-attribution"
 import { fundSummary, allocations, topMovers } from "@/lib/mock-data"
 import { agentStats } from "@/lib/mock-data/agents"
 
@@ -22,9 +28,9 @@ function formatPercent(value: number): string {
 
 export default function Dashboard() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Fund Summary Cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         <div className="dashboard-container p-4">
           <p className="text-xs text-muted-foreground mb-2">Assets Under Management</p>
           <p className="text-2xl font-semibold text-foreground">{formatCurrency(fundSummary.aum)}</p>
@@ -48,7 +54,7 @@ export default function Dashboard() {
       </div>
 
       {/* Agent Activity & Allocation Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Agent Activity */}
         <div className="dashboard-container p-4">
           <div className="flex items-center gap-2 mb-3">
@@ -111,10 +117,22 @@ export default function Dashboard() {
         </div>
       </div>
 
+      {/* Performance Chart */}
+      <PerformanceChart />
+
+      {/* Risk Metrics */}
+      <RiskMetrics />
+
+      {/* Market Overview */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <MarketIndices />
+        <SectorHeatmap />
+      </div>
+
       {/* Top Movers */}
       <div className="dashboard-container p-4">
         <h3 className="text-sm font-semibold text-foreground mb-3">Top Movers Today</h3>
-        <div className="grid grid-cols-2 lg:grid-cols-5 gap-3">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
           {topMovers.map((mover) => (
             <div
               key={mover.ticker}
@@ -137,7 +155,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Main Dashboard Content */}
+      {/* Market Structure & CapEx Intelligence */}
       <div className="dashboard-container-elevated space-y-4 overflow-hidden">
         <div className="px-5 pt-5">
           <h3 className="text-sm font-semibold text-foreground">
@@ -148,15 +166,19 @@ export default function Dashboard() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 px-5">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 px-5">
           <AISpendChart />
           <KeyInsightCard />
+          <FactorAttribution />
         </div>
 
         <div className="px-5 pb-5">
           <CapexTable />
         </div>
       </div>
+
+      {/* Strategy Holdings */}
+      <StrategyHoldings />
     </div>
   )
 }

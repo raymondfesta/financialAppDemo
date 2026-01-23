@@ -105,6 +105,9 @@ export const topMovers: TopMover[] = [
   { ticker: "NVDA", name: "NVIDIA Corp", change: 3.20, changePercent: 2.30, reason: "Blackwell demand surge" },
   { ticker: "AVGO", name: "Broadcom Inc", change: 20.82, changePercent: 2.10, reason: "AI networking wins" },
   { ticker: "TSM", name: "Taiwan Semi", change: 3.32, changePercent: 1.80, reason: "Capacity expansion" },
+  { ticker: "AMZN", name: "Amazon.com", change: 2.96, changePercent: 1.52, reason: "AWS growth reacceleration" },
+  { ticker: "XOM", name: "Exxon Mobil", change: 1.54, changePercent: 1.40, reason: "OPEC+ supply cuts" },
   { ticker: "VIX Calls", name: "VIX Options", change: -0.14, changePercent: -3.50, reason: "Vol compression" },
+  { ticker: "AAPL", name: "Apple Inc", change: -0.70, changePercent: -0.30, reason: "China demand concerns" },
   { ticker: "TLT", name: "Treasury 20Y+", change: -0.38, changePercent: -0.40, reason: "Rate expectations" },
 ]
