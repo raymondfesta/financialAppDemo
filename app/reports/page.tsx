@@ -1,6 +1,13 @@
-import { Download, Clock, Check, Calendar } from "lucide-react"
+import { Download, Clock, Check, Calendar, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { reports } from "@/lib/mock-data"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { reports, reportTypes } from "@/lib/mock-data"
 
 function StatusIcon({ status }: { status: "ready" | "generating" | "scheduled" }) {
   if (status === "ready") return <Check className="w-4 h-4 text-emerald-400" />
@@ -38,9 +45,25 @@ export default function ReportsPage() {
           <h1 className="text-xl font-semibold text-foreground">Reports</h1>
           <p className="text-sm text-muted-foreground mt-1">Generated reports for investors and compliance</p>
         </div>
-        <Button className="bg-chart-1 text-white hover:bg-chart-1/90">
-          Generate Report
-        </Button>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button className="bg-chart-1 text-white hover:bg-chart-1/90">
+              Generate Report
+              <ChevronDown className="w-4 h-4 ml-2" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="w-72">
+            {reportTypes.map((type, idx) => (
+              <div key={type.name}>
+                <DropdownMenuItem className="flex flex-col items-start py-2.5 cursor-pointer">
+                  <span className="font-medium text-foreground">{type.name}</span>
+                  <span className="text-xs text-muted-foreground">{type.desc}</span>
+                </DropdownMenuItem>
+                {idx < reportTypes.length - 1 && <DropdownMenuSeparator />}
+              </div>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
 
       {/* Reports Table */}
@@ -88,25 +111,6 @@ export default function ReportsPage() {
         </div>
       </div>
 
-      {/* Report Types Info */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {[
-          { type: "Monthly Investor Letter", desc: "Monthly performance summary and market commentary" },
-          { type: "Quarterly Performance", desc: "Comprehensive quarterly analysis with attribution" },
-          { type: "Risk Report", desc: "VaR analysis, stress testing, and factor exposure" },
-          { type: "Compliance Report", desc: "Regulatory compliance and trade surveillance" },
-          { type: "Position Report", desc: "Daily position snapshot with P&L metrics" },
-          { type: "Trade Blotter", desc: "Detailed trade log with execution analysis" },
-        ].map((item) => (
-          <div
-            key={item.type}
-            className="dashboard-container-flat p-4"
-          >
-            <h3 className="text-sm font-semibold text-foreground mb-2">{item.type}</h3>
-            <p className="text-xs text-muted-foreground">{item.desc}</p>
-          </div>
-        ))}
-      </div>
     </div>
   )
 }
