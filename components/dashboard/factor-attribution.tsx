@@ -15,7 +15,7 @@ export function FactorAttribution() {
                 {item.contribution >= 0 ? "+" : ""}{item.contribution.toFixed(1)}%
               </span>
             </div>
-            <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
+            <div className="h-1.5 bg-muted rounded-full overflow-hidden">
               <div
                 className="h-full rounded-full transition-all"
                 style={{

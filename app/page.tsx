@@ -84,7 +84,7 @@ export default function Dashboard() {
               {allocations.map((item) => (
                 <div key={item.name} className="flex items-center gap-3">
                   <div className="w-24 text-xs text-muted-foreground">{item.name}</div>
-                  <div className="flex-1 h-2 bg-white/5 rounded-full overflow-hidden">
+                  <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                     <div
                       className="h-full rounded-full transition-all duration-500"
                       style={{ width: `${item.percentage}%`, backgroundColor: item.color }}
