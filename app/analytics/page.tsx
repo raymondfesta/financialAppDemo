@@ -99,20 +99,23 @@ export default function AnalyticsPage() {
         <div className="dashboard-container p-4">
           <h3 className="text-sm font-semibold text-foreground mb-3">Rolling Returns</h3>
           <div className="space-y-3">
-            {rollingReturns.map((r) => (
-              <div key={r.period} className="space-y-1">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-muted-foreground">{r.period}</span>
-                  <div className="flex items-center gap-3">
-                    <span className={r.portfolio >= 0 ? 'text-emerald-400' : 'text-red-400'}>{formatPercent(r.portfolio)}</span>
-                    <span className="text-muted-foreground text-[10px]">{r.percentile}th %ile</span>
+            {rollingReturns.map((r, i) => {
+              const colors = ['#3b82f6', '#22c55e', '#06b6d4', '#eab308', '#8b5cf6']
+              return (
+                <div key={r.period} className="space-y-1">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-muted-foreground">{r.period}</span>
+                    <div className="flex items-center gap-3">
+                      <span className={r.portfolio >= 0 ? 'text-emerald-400' : 'text-red-400'}>{formatPercent(r.portfolio)}</span>
+                      <span className="text-muted-foreground text-[10px]">{r.percentile}th %ile</span>
+                    </div>
+                  </div>
+                  <div className="h-1.5 bg-muted rounded-full overflow-hidden">
+                    <div className="h-full rounded-full" style={{ width: `${r.percentile}%`, backgroundColor: colors[i % colors.length] }} />
                   </div>
                 </div>
-                <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
-                  <div className="h-full bg-chart-1 rounded-full" style={{ width: `${r.percentile}%` }} />
-                </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
 
@@ -214,8 +217,17 @@ export default function AnalyticsPage() {
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
                 <XAxis type="number" tick={{ fill: '#a1a1a1', fontSize: 10 }} axisLine={false} tickLine={false} />
                 <YAxis dataKey="factor" type="category" tick={{ fill: '#a1a1a1', fontSize: 10 }} axisLine={false} tickLine={false} />
-                <Tooltip contentStyle={{ background: '#171717', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} labelStyle={{ color: '#fafafa' }} />
-                <Bar dataKey="exposure" radius={[0, 4, 4, 0]}>
+                <Tooltip
+                  contentStyle={{ background: '#171717', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }}
+                  labelStyle={{ color: '#fafafa' }}
+                  itemStyle={{ color: '#fafafa' }}
+                  cursor={{ fill: '#1f1f1f' }}
+                />
+                <Bar
+                  dataKey="exposure"
+                  radius={[0, 4, 4, 0]}
+                  activeBar={false}
+                >
                   {factorExposures.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.exposure >= 0 ? '#3b82f6' : '#ef4444'} />
                   ))}
@@ -232,7 +244,7 @@ export default function AnalyticsPage() {
             {attribution.map((item) => (
               <div key={item.category} className="flex items-center gap-2">
                 <div className="w-28 text-xs text-muted-foreground truncate">{item.category}</div>
-                <div className="flex-1 h-2 bg-white/5 rounded-full overflow-hidden">
+                <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                   <div className="h-full rounded-full" style={{ width: `${Math.abs(item.contribution) / 5 * 100}%`, backgroundColor: item.color }} />
                 </div>
                 <div className={`w-12 text-xs text-right font-medium ${item.contribution >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
@@ -251,17 +263,20 @@ export default function AnalyticsPage() {
         <div className="dashboard-container p-4">
           <h3 className="text-sm font-semibold text-foreground mb-3">Risk Contribution</h3>
           <div className="space-y-2">
-            {riskContribution.map((r) => (
-              <div key={r.strategy} className="space-y-1">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-muted-foreground">{r.strategy}</span>
-                  <span className="text-foreground">{r.varContribution}% VaR</span>
+            {riskContribution.map((r, i) => {
+              const colors = ['#3b82f6', '#22c55e', '#06b6d4', '#eab308', '#8b5cf6']
+              return (
+                <div key={r.strategy} className="space-y-1">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-muted-foreground">{r.strategy}</span>
+                    <span className="text-foreground">{r.varContribution}% VaR</span>
+                  </div>
+                  <div className="h-1.5 bg-muted rounded-full overflow-hidden flex">
+                    <div className="h-full rounded-full" style={{ width: `${r.varContribution}%`, backgroundColor: colors[i % colors.length] }} />
+                  </div>
                 </div>
-                <div className="h-1.5 bg-white/5 rounded-full overflow-hidden flex">
-                  <div className="h-full bg-chart-1" style={{ width: `${r.varContribution}%` }} />
-                </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </div>
