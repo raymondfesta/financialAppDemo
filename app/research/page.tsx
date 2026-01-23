@@ -58,7 +58,7 @@ export default function ResearchPage() {
       </div>
 
       {/* Filters */}
-      <div className="flex flex-col sm:flex-row gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center gap-4">
         {/* Category Tabs */}
         <div
           className="p-1 inline-flex gap-1 rounded-lg"
@@ -87,7 +87,7 @@ export default function ResearchPage() {
             placeholder="Search by ticker, title, or keyword..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 rounded-lg text-sm bg-white/5 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-blue-500"
+            className="w-full pl-10 pr-4 py-2 rounded-lg text-sm bg-white/5 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring"
           />
         </div>
       </div>

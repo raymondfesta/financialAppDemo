@@ -1,4 +1,5 @@
-import { Search, TrendingUp, Newspaper, FileText, Calculator, Shield, ArrowUp, ArrowDown, Bot } from "lucide-react"
+import { Search, TrendingUp, Newspaper, FileText, Calculator, Shield, ArrowUp, ArrowDown, Bot, Plus } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { agents, recentInsights, agentStats } from "@/lib/mock-data"
 
 const iconMap: Record<string, React.ElementType> = {
@@ -34,9 +35,15 @@ export default function InvestmentAgentsPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div>
-        <h1 className="text-xl font-semibold text-foreground">Investment Agents</h1>
-        <p className="text-sm text-muted-foreground mt-1">Autonomous AI agents performing research and analysis</p>
+      <div className="flex items-start justify-between">
+        <div>
+          <h1 className="text-xl font-semibold text-foreground">Investment Agents</h1>
+          <p className="text-sm text-muted-foreground mt-1">Autonomous AI agents performing research and analysis</p>
+        </div>
+        <Button className="bg-chart-1 text-white hover:bg-chart-1/90">
+          <Plus />
+          Create Agent
+        </Button>
       </div>
 
       {/* Stats Row */}
@@ -72,10 +79,7 @@ export default function InvestmentAgentsPage() {
               >
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center gap-3">
-                    <div
-                      className="w-10 h-10 rounded-lg flex items-center justify-center"
-                      style={{ background: 'rgba(59, 130, 246, 0.2)' }}
-                    >
+                    <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-chart-1/20">
                       <IconComponent className="w-5 h-5 text-blue-400" strokeWidth={1.5} />
                     </div>
                     <div>

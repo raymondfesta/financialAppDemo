@@ -1,14 +1,12 @@
 "use client"
 
 const sentimentData = [
-  { ticker: "NVDA", percentage: 92, score: "92", color: "#22c55e" },
-  { ticker: "MSFT", percentage: 78, score: "78", color: "#3b82f6" },
-  { ticker: "GOOGL", percentage: 71, score: "71", color: "#22d3ee" },
-  { ticker: "AMZN", percentage: 65, score: "65", color: "#f59e0b" },
-  { ticker: "META", percentage: 58, score: "58", color: "#6366f1" },
+  { ticker: "NVDA", percentage: 92, score: "92", colorClass: "bg-chart-2" },
+  { ticker: "MSFT", percentage: 78, score: "78", colorClass: "bg-chart-1" },
+  { ticker: "GOOGL", percentage: 71, score: "71", colorClass: "bg-chart-3" },
+  { ticker: "AMZN", percentage: 65, score: "65", colorClass: "bg-chart-4" },
+  { ticker: "META", percentage: 58, score: "58", colorClass: "bg-chart-5" },
 ]
-
-const spendData = sentimentData.map(item => ({ ...item, amount: item.score })); // Assuming amount is derived from score
 
 export function AISpendChart() {
   return (
@@ -22,11 +20,8 @@ export function AISpendChart() {
             <span className="text-xs font-medium text-foreground w-11 shrink-0">{item.ticker}</span>
             <div className="flex-1 h-3.5 bg-transparent rounded overflow-hidden">
               <div
-                className="h-full rounded transition-all duration-500"
-                style={{
-                  width: `${item.percentage}%`,
-                  backgroundColor: item.color,
-                }}
+                className={`h-full rounded transition-all duration-500 ${item.colorClass}`}
+                style={{ width: `${item.percentage}%` }}
               />
             </div>
             <span className="text-xs text-muted-foreground w-16 text-right shrink-0">

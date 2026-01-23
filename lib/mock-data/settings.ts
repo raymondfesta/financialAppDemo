@@ -23,11 +23,11 @@ export interface NotificationSetting {
 }
 
 export const userProfile: UserProfile = {
-  name: "Alex Chen",
-  email: "alex.chen@alphahedge.com",
+  name: "Ray Festa",
+  email: "raymond.festa2020@gmail.com",
   role: "Portfolio Manager",
   timezone: "America/New_York",
-  avatar: "AC",
+  avatar: "RF",
 }
 
 export const integrations: Integration[] = [

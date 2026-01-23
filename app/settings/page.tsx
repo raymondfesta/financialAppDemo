@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Check, X, AlertCircle } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { userProfile, integrations, notificationSettings, timezones } from "@/lib/mock-data"
 
 type Tab = "profile" | "notifications" | "integrations"
@@ -17,7 +18,7 @@ function Toggle({ enabled, onChange }: { enabled: boolean; onChange: () => void 
     <button
       onClick={onChange}
       className={`w-10 h-6 rounded-full transition-colors relative ${
-        enabled ? "bg-blue-500" : "bg-white/20"
+        enabled ? "bg-chart-1" : "bg-white/20"
       }`}
     >
       <div
@@ -87,7 +88,7 @@ export default function SettingsPage() {
               <input
                 type="text"
                 defaultValue={userProfile.name}
-                className="w-full px-3 py-2 rounded-lg text-sm bg-white/5 border border-border text-foreground focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-full px-3 py-2 rounded-lg text-sm bg-white/5 border border-border text-foreground focus:outline-none focus:ring-1 focus:ring-ring"
               />
             </div>
             <div>
@@ -95,7 +96,7 @@ export default function SettingsPage() {
               <input
                 type="email"
                 defaultValue={userProfile.email}
-                className="w-full px-3 py-2 rounded-lg text-sm bg-white/5 border border-border text-foreground focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-full px-3 py-2 rounded-lg text-sm bg-white/5 border border-border text-foreground focus:outline-none focus:ring-1 focus:ring-ring"
               />
             </div>
             <div>
@@ -103,7 +104,7 @@ export default function SettingsPage() {
               <input
                 type="text"
                 defaultValue={userProfile.role}
-                className="w-full px-3 py-2 rounded-lg text-sm bg-white/5 border border-border text-foreground focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-full px-3 py-2 rounded-lg text-sm bg-white/5 border border-border text-foreground focus:outline-none focus:ring-1 focus:ring-ring"
                 readOnly
               />
             </div>
@@ -111,7 +112,7 @@ export default function SettingsPage() {
               <label className="block text-xs text-muted-foreground mb-2">Timezone</label>
               <select
                 defaultValue={userProfile.timezone}
-                className="w-full px-3 py-2 rounded-lg text-sm bg-white/5 border border-border text-foreground focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-full px-3 py-2 rounded-lg text-sm bg-white/5 border border-border text-foreground focus:outline-none focus:ring-1 focus:ring-ring"
               >
                 {timezones.map((tz) => (
                   <option key={tz} value={tz} className="bg-[#171717]">
@@ -120,9 +121,9 @@ export default function SettingsPage() {
                 ))}
               </select>
             </div>
-            <button className="px-4 py-2 rounded-lg text-sm font-medium bg-blue-500 text-white hover:bg-blue-600 transition-colors">
+            <Button className="bg-chart-1 text-white hover:bg-chart-1/90">
               Save Changes
-            </button>
+            </Button>
           </div>
         </div>
       )}

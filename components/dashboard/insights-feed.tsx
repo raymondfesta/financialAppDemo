@@ -1,87 +1,26 @@
 import { ArrowUp, ArrowDown, Bot } from "lucide-react"
-
-type TrendDirection = "up" | "down" | "neutral"
-
-interface InsightItem {
-  ticker: string
-  date: string
-  insight: string
-  source: string
-  trend: TrendDirection
-}
+import { recentInsights } from "@/lib/mock-data"
 
 interface InsightsFeedProps {
   isOpen: boolean
   onClose: () => void
 }
 
-const insights: InsightItem[] = [
-  {
-    ticker: "NVDA",
-    date: "Jan 14, 2026",
-    insight: "Blackwell GPU shipments ramping faster than expected. Institutional 13F filings show 12% increase in hedge fund positions.",
-    source: "Investment Agent",
-    trend: "up",
-  },
-  {
-    ticker: "SMCI",
-    date: "Jan 16, 2026",
-    insight: "Unusual options activity detected. Large block trades suggest institutional accumulation ahead of earnings.",
-    source: "Options Flow Agent",
-    trend: "up",
-  },
-  {
-    ticker: "AMD",
-    date: "Jan 15, 2026",
-    insight: "MI300X demand softening per supply chain checks. Competitor NVDA taking market share in enterprise AI.",
-    source: "Research Agent",
-    trend: "down",
-  },
-  {
-    ticker: "MSFT",
-    date: "Jan 14, 2026",
-    insight: "Azure AI revenue run rate exceeded $10B. Copilot enterprise adoption accelerating with 40% QoQ growth.",
-    source: "Earnings Agent",
-    trend: "up",
-  },
-  {
-    ticker: "GOOGL",
-    date: "Jan 12, 2026",
-    insight: "Gemini 2.0 API calls up 300% MoM. Cloud margins improving as AI workloads scale.",
-    source: "Investment Agent",
-    trend: "up",
-  },
-  {
-    ticker: "PLTR",
-    date: "Jan 18, 2026",
-    insight: "AIP platform wins 3 new Fortune 100 contracts. Government segment showing renewed momentum.",
-    source: "News Agent",
-    trend: "neutral",
-  },
-  {
-    ticker: "ORCL",
-    date: "Jan 17, 2026",
-    insight: "OCI capacity constraints easing. Multi-cloud partnerships with MSFT and GOOGL driving enterprise adoption.",
-    source: "Research Agent",
-    trend: "up",
-  },
-]
-
-function TrendIcon({ trend }: { trend: TrendDirection }) {
-  if (trend === "up") {
-    return <ArrowUp className="h-3 w-3 text-emerald-500" />
+function TrendIcon({ type }: { type: "bullish" | "bearish" | "neutral" }) {
+  if (type === "bullish") {
+    return <ArrowUp className="h-3 w-3 text-emerald-400" />
   }
-  if (trend === "down") {
-    return <ArrowDown className="h-3 w-3 text-red-500" />
+  if (type === "bearish") {
+    return <ArrowDown className="h-3 w-3 text-red-400" />
   }
-  return <Bot className="h-3 w-3 text-amber-500" />
+  return <Bot className="h-3 w-3 text-amber-400" />
 }
 
 export function InsightsFeed({ isOpen }: InsightsFeedProps) {
   return (
-    <aside 
+    <aside
       className={`
-        flex flex-col bg-[#111111] border-l border-border h-screen
+        flex flex-col bg-sidebar border-l border-border h-screen
         transition-all duration-300 ease-in-out overflow-hidden
         ${isOpen ? "w-72 xl:w-80" : "w-0 border-l-0"}
       `}
@@ -91,20 +30,20 @@ export function InsightsFeed({ isOpen }: InsightsFeedProps) {
       </div>
       
       <div className="flex-1 overflow-y-auto min-h-0 min-w-72 xl:min-w-80">
-        {insights.map((item, index) => (
-          <div key={index} className="px-4 py-4 border-b border-border last:border-b-0">
+        {recentInsights.map((item) => (
+          <div key={item.id} className="px-4 py-4 border-b border-border last:border-b-0">
             <div className="flex items-center justify-between mb-1.5">
               <div className="flex items-center gap-1.5">
                 <span className="text-sm font-semibold text-foreground">{item.ticker}</span>
-                <TrendIcon trend={item.trend} />
+                <TrendIcon type={item.type} />
               </div>
-              <span className="text-xs text-muted-foreground">{item.date}</span>
+              <span className="text-xs text-muted-foreground">{item.timestamp}</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed mb-2">
               {item.insight}
             </p>
             <p className="text-xs text-muted-foreground/70">
-              Source: {item.source}
+              Source: {item.agentName}
             </p>
           </div>
         ))}

@@ -39,19 +39,12 @@ export function LeftNav({ isOpen, onToggle }: LeftNavProps) {
 
   return (
     <aside
-      className="flex flex-col h-screen shrink-0 transition-all duration-300 ease-in-out"
-      style={{
-        width: isOpen ? '220px' : '56px',
-        borderRight: '1px solid rgba(255, 255, 255, 0.06)',
-        background: '#111111',
-      }}
+      className="flex flex-col h-screen shrink-0 transition-all duration-300 ease-in-out bg-sidebar border-r border-border"
+      style={{ width: isOpen ? '220px' : '56px' }}
     >
       {/* Logo area with collapse toggle */}
       <div
-        className={`h-12 flex items-center shrink-0 transition-all duration-300 ${isOpen ? 'justify-between px-3' : 'justify-center px-0'}`}
-        style={{
-          borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
-        }}
+        className={`h-12 flex items-center shrink-0 transition-all duration-300 border-b border-border ${isOpen ? 'justify-between px-3' : 'justify-center px-0'}`}
       >
         {isOpen && (
           <Link href="/" className="flex items-center overflow-hidden">

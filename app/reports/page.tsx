@@ -1,4 +1,5 @@
 import { Download, Clock, Check, Calendar } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { reports } from "@/lib/mock-data"
 
 function StatusIcon({ status }: { status: "ready" | "generating" | "scheduled" }) {
@@ -37,11 +38,9 @@ export default function ReportsPage() {
           <h1 className="text-xl font-semibold text-foreground">Reports</h1>
           <p className="text-sm text-muted-foreground mt-1">Generated reports for investors and compliance</p>
         </div>
-        <button
-          className="px-4 py-2 rounded-lg text-sm font-medium bg-blue-500 text-white hover:bg-blue-600 transition-colors"
-        >
+        <Button className="bg-chart-1 text-white hover:bg-chart-1/90">
           Generate Report
-        </button>
+        </Button>
       </div>
 
       {/* Reports Table */}
