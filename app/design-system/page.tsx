@@ -1,6 +1,7 @@
 "use client"
 
-import { AlertCircle, Settings, Bold, Italic, CheckCircle, Info, Plus, Send } from "lucide-react"
+import Link from "next/link"
+import { AlertCircle, Settings, Bold, Italic, CheckCircle, Info, Plus, Send, ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
@@ -135,6 +136,15 @@ export default function DesignSystemPage() {
   return (
     <TooltipProvider>
       <div className="min-h-screen p-6 lg:p-10 space-y-8 max-w-screen-2xl mx-auto">
+        {/* Back button */}
+        <Link
+          href="/"
+          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Back to Application
+        </Link>
+
         {/* Header */}
         <header className="space-y-1">
           <h1 className="text-2xl font-semibold">Design System</h1>

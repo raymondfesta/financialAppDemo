@@ -99,6 +99,18 @@ export function LeftNav({ isOpen, onToggle }: LeftNavProps) {
           })}
         </ul>
       </nav>
+
+      {/* Design system link */}
+      {isOpen && (
+        <div className="px-4 py-3 border-t border-border">
+          <Link
+            href="/design-system"
+            className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+          >
+            View design system
+          </Link>
+        </div>
+      )}
     </aside>
   )
 }
