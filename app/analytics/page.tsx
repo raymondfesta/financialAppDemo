@@ -1,5 +1,6 @@
 "use client"
 
+import React from "react"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Cell, AreaChart, Area } from "recharts"
 import {
   performanceHistory,
@@ -320,31 +321,30 @@ export default function AnalyticsPage() {
         {/* Correlation Matrix */}
         <div className="dashboard-container p-4">
           <h3 className="text-sm font-semibold text-foreground mb-3">Correlation Matrix</h3>
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr>
-                  <th className="text-left text-[10px] font-medium text-muted-foreground py-1 px-1"></th>
-                  {correlationMatrix.assets.map((asset) => (
-                    <th key={asset} className="text-center text-[10px] font-medium text-muted-foreground py-1 px-1 truncate">{asset.slice(0, 6)}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {correlationMatrix.assets.map((asset, i) => (
-                  <tr key={asset}>
-                    <td className="text-[10px] text-muted-foreground py-1 px-1 truncate">{asset.slice(0, 8)}</td>
-                    {correlationMatrix.data[i].map((value, j) => (
-                      <td key={j} className="py-1 px-1">
-                        <div className={`w-8 h-8 flex items-center justify-center text-[10px] rounded ${getCorrelationColor(value)}`}>
-                          {value.toFixed(2)}
-                        </div>
-                      </td>
-                    ))}
-                  </tr>
+          <div className="grid gap-1" style={{ gridTemplateColumns: `70px repeat(${correlationMatrix.assets.length}, 1fr)` }}>
+            {/* Header row */}
+            <div />
+            {correlationMatrix.assets.map((asset) => (
+              <div key={asset} className="text-center text-[11px] font-medium text-muted-foreground py-1">
+                {asset}
+              </div>
+            ))}
+            {/* Data rows */}
+            {correlationMatrix.assets.map((asset, i) => (
+              <React.Fragment key={asset}>
+                <div className="flex items-center text-xs text-muted-foreground h-8">
+                  {asset}
+                </div>
+                {correlationMatrix.data[i].map((value, j) => (
+                  <div
+                    key={`${i}-${j}`}
+                    className={`h-8 flex items-center justify-center text-xs font-medium rounded ${getCorrelationColor(value)}`}
+                  >
+                    {value.toFixed(2)}
+                  </div>
                 ))}
-              </tbody>
-            </table>
+              </React.Fragment>
+            ))}
           </div>
         </div>
       </div>
