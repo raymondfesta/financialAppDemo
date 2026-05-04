@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image"
 import { usePathname } from "next/navigation"
 import {
   LayoutDashboard,
@@ -48,14 +47,7 @@ export function LeftNav({ isOpen, onToggle }: LeftNavProps) {
       >
         {isOpen && (
           <Link href="/" className="flex items-center overflow-hidden">
-            <Image
-              src="/boosted-logo.svg"
-              alt="Boosted.ai"
-              width={120}
-              height={29}
-              className="shrink-0"
-              priority
-            />
+            <span className="text-sm font-semibold tracking-tight text-foreground">Fleet Dashboard</span>
           </Link>
         )}
         <button

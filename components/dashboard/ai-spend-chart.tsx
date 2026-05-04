@@ -12,7 +12,7 @@ export function AISpendChart() {
   return (
     <div className="dashboard-container-nested p-4">
       <h3 className="text-sm font-semibold text-foreground mb-0.5">AI Sentiment Analysis</h3>
-      <p className="text-xs text-muted-foreground mb-4">Boosted Conviction Score (Top 5 Holdings)</p>
+      <p className="text-xs text-muted-foreground mb-4">AI Conviction Score (Top 5 Holdings)</p>
       
       <div className="space-y-2.5">
         {sentimentData.map((item) => (

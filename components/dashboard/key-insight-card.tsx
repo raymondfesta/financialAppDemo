@@ -13,7 +13,7 @@ export function KeyInsightCard() {
       </p>
 
       <p className="text-xs text-muted-foreground/70 mt-4 pt-3 border-t border-border">
-        Sources: Boosted Investment Agents, Real-time Options Flow, SEC 13F Filings
+        Sources: AI Investment Agents, Real-time Options Flow, SEC 13F Filings
       </p>
     </div>
   )

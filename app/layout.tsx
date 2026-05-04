@@ -9,8 +9,8 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Boosted.ai - AI Fleet Dashboard',
-  description: 'Financial dashboard powered by Boosted.ai investment agents',
+  title: 'AI Fleet Dashboard',
+  description: 'Financial dashboard powered by AI investment agents',
   generator: 'v0.app',
 }
 
